@@ -45,9 +45,7 @@ def connect_to_wifi(ssid, password, username,
         network_params = {
             "ssid": ssid,
             "key_mgmt": "WPA-PSK",
-            "eap": "PEAP",
-            'password': password,
-            #"phase2": "auth=MSCHAPV2",
+            'psk': password,
         } 
     # Remove all the networks currently assigned to this interface
     for network in interface.get_networks():
@@ -192,9 +190,13 @@ except:
 
 
 # Read usernames into array, users
-If userfile and f = open(userfile, 'r')
-users = [l.rstrip() for l in f.readlines()]
-f.close()
+if userfile != None:
+    f = open(userfile, 'r')
+    users = [l.rstrip() for l in f.readlines()]
+    f.close()
+else:
+    authentication = "wpa-psk"
+    users = [None] * 1
 
 try:
     for password in passwords:
