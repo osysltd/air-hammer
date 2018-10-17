@@ -30,7 +30,7 @@ def connect_to_wifi(ssid, password, username,
     print "Trying %s:%s..." % (username, password)
 
     # WPA Enterprise configuration
-    if authentication == "wpa-enterprise":
+    if username !== [None]:
         network_params = {
             "ssid": ssid,
             "key_mgmt": "WPA-EAP",
@@ -41,7 +41,7 @@ def connect_to_wifi(ssid, password, username,
         } 
         
     # WPA PSK configuration
-    if authentication == "wpa-psk":
+    else:
         network_params = {
             "ssid": ssid,
             "key_mgmt": "WPA-PSK",
@@ -195,7 +195,6 @@ if userfile != None:
     users = [l.rstrip() for l in f.readlines()]
     f.close()
 else:
-    authentication = "wpa-psk"
     users = [None] * 1
 
 try:
