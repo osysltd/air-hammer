@@ -30,7 +30,7 @@ def connect_to_wifi(ssid, password, username,
     print "Trying %s:%s..." % (username, password)
 
     # WPA Enterprise configuration
-    if username !== [None]:
+    if username != [None]:
         network_params = {
             "ssid": ssid,
             "key_mgmt": "WPA-EAP",
