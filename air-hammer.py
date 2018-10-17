@@ -39,7 +39,16 @@ def connect_to_wifi(ssid, password, username,
             'password': password,
             "phase2": "auth=MSCHAPV2",
         } 
-
+        
+    # WPA PSK configuration
+    if authentication == "wpa-psk":
+        network_params = {
+            "ssid": ssid,
+            "key_mgmt": "WPA-PSK",
+            "eap": "PEAP",
+            'password': password,
+            #"phase2": "auth=MSCHAPV2",
+        } 
     # Remove all the networks currently assigned to this interface
     for network in interface.get_networks():
         network_path = network.get_path()
@@ -108,7 +117,7 @@ parser.add_argument('-i', type=str, required=True, metavar='interface',
                     dest='device', help='Wireless interface')
 parser.add_argument('-e', type=str, required=True,
                     dest='ssid', help='SSID of the target network')
-parser.add_argument('-u', type=str, required=True, dest='userfile', 
+parser.add_argument('-u', type=str, required=False, dest='userfile', 
                     help='Username wordlist')
 parser.add_argument('-P', dest='password', default=None,
                     help='Password to try on each username')
@@ -183,7 +192,7 @@ except:
 
 
 # Read usernames into array, users
-f = open(userfile, 'r')
+If userfile and f = open(userfile, 'r')
 users = [l.rstrip() for l in f.readlines()]
 f.close()
 
