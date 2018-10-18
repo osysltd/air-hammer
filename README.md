@@ -1,4 +1,4 @@
-Air-Hammer - A WPA Enterprise horizontal brute-force attack tool
+Air-Hammer - A WPA Enterprise or Pre-shared key horizontal brute-force attack tool
 ==========
 *Created by Michael "Wh1t3Rh1n0" Allen, 2016-09-01*
 
