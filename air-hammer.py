@@ -27,10 +27,8 @@ def connect_to_wifi(ssid, password, username,
                     authentication="wpa-enterprise"):
     valid_credentials_found = False
 
-    print "Trying %s:%s..." % (username, password)
-
     # WPA Enterprise configuration
-    if username != [None]:
+    if authentication == "wpa-enterprise":
         network_params = {
             "ssid": ssid,
             "key_mgmt": "WPA-EAP",
@@ -47,6 +45,9 @@ def connect_to_wifi(ssid, password, username,
             "key_mgmt": "WPA-PSK",
             'psk': password,
         } 
+
+    print "Trying %s:%s (%s)..." % (username, password, network_params["key_mgmt"])
+
     # Remove all the networks currently assigned to this interface
     for network in interface.get_networks():
         network_path = network.get_path()
@@ -60,11 +61,11 @@ def connect_to_wifi(ssid, password, username,
 
     # Check the status of the wireless connection
     credentials_valid = 0
-    max_wait = 4.5
+    max_wait = 10
     # How often, in seconds, the loop checks for successful authentication
-    test_interval = 0.01
+    test_interval = 0.02
     seconds_passed = 0
-    while seconds_passed <= max_wait:
+    while seconds_passed <= max_wait or state == "scanning":
         try:
             state = interface.get_state()
             if state == "completed":
@@ -125,7 +126,7 @@ parser.add_argument('-s', type=int, default=0, dest='start', metavar='line',
                     help='Optional start line to resume attack. May not be used with a password list.')
 parser.add_argument('-w', type=str, default=None, dest='outfile', 
                     help='Save valid credentials to a CSV file')
-parser.add_argument('-1', default=False, dest='stop_on_success', 
+parser.add_argument('-1', default=True, dest='stop_on_success', 
                     action='store_true',
                     help='Stop after the first set of valid credentials are found')
 parser.add_argument('-t', default=0.5, metavar='seconds', type=float,
@@ -196,6 +197,7 @@ if userfile != None:
     f.close()
 else:
     users = [None] * 1
+    authentication="wpa-psk"
 
 try:
     for password in passwords:
@@ -205,6 +207,7 @@ try:
                                                       username=str(users[n]), 
                                                       password=str(password), 
                                                       interface=interface,
+                                                      authentication=authentication,
                                                       supplicant=supplicant, 
                                                       outfile=outfile)
             if (valid_credentials_found and stop_on_success):
