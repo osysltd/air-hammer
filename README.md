@@ -1,10 +1,10 @@
-Air-Hammer - A WPA Enterprise or Pre-shared key horizontal brute-force attack tool
+Air-Hammer - A WPA Enterprise and WPA PSK horizontal brute-force attack tool
 ==========
 *Created by Michael "Wh1t3Rh1n0" Allen, 2016-09-01*
 
 Introduction
 ------------
-Air-Hammer is an online brute-force attack tool for use against WPA Enterprise networks. Although WPA Enterprise is often considered "more secure" than WPA-PSK, it also has a much larger attack surface. While WPA-PSK networks have only one valid password, there may be thousands of valid username and password combinations which grant access to a single WPA Enterprise network. Further, passwords used to access WPA Enterprise networks are commonly selected by end users, many of whom select **extremely common passwords**.
+Air-Hammer is an online brute-force attack tool for use against WPA networks. Although WPA Enterprise is often considered "more secure" than WPA-PSK, it also has a much larger attack surface. While WPA-PSK networks have only one valid password, there may be thousands of valid username and password combinations which grant access to a single WPA Enterprise network. Further, passwords used to access WPA Enterprise networks are commonly selected by end users, many of whom select **extremely common passwords**.
 
 Air-Hammer has several advantages over current attacks against WPA Enterprise networks including:
 
