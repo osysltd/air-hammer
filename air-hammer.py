@@ -68,8 +68,11 @@ def connect_to_wifi(ssid, password, username,
     while seconds_passed <= max_wait or state == "scanning":
         try:
             state = interface.get_state()
+            # print "[I] STATE: %s" % (state)
             if state == "completed":
                 credentials_valid = 1
+                break
+            if state == "disconnected":
                 break
         except Exception, e:
             print e
