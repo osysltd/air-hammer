@@ -72,8 +72,6 @@ def connect_to_wifi(ssid, password, username,
             if state == "completed":
                 credentials_valid = 1
                 break
-            if state == "disconnected":
-                break
         except Exception, e:
             print e
             break
