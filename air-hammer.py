@@ -166,8 +166,8 @@ if passfile != None:
     f = open(passfile, 'r')
     content = f.read()
     f.close()
-    content.replace("\r","")
-    passwords = content.split("\n")
+    #content.replace("\r","")
+    passwords = content.split("\r\n")
     # If there is a trailing line at the end of the file, remove it from
     # the password list
     if passwords[-1] == "":
