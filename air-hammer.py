@@ -9,6 +9,9 @@ from wpa_supplicant.core import WpaSupplicantDriver
 from twisted.internet.selectreactor import SelectReactor
 import threading
 
+import logging
+logging.basicConfig()
+logger=logging.getLogger("wpasupplicant")
 
 def timestamp():
     Y = datetime.datetime.now().year
